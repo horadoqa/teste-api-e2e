@@ -71,7 +71,7 @@ run-playwright:
 
 run-robot:
 	@echo "$(BLUE)🧪 Executando Robot...$(NC)"
-	cd robot && robot serverest-cadastro.robot
+	cd robot && mkdir -p results && robot --outputdir results serverest-cadastro.robot
 
 run-all:
 	@echo "$(GREEN)🚀 Executando TODOS os testes...$(NC)"
