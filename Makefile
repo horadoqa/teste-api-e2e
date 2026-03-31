@@ -44,6 +44,7 @@ loop:
 			10) $(MAKE) run-playwright-docker ;; \
 			11) $(MAKE) run-robot-docker ;; \
 			12) $(MAKE) run-all-docker ;; \
+			13) $(MAKE) clear-docker ;; \
 			0) echo "$(RED)👋 Saindo...$(NC)"; break ;; \
 			*) echo "$(RED)❌ Opção inválida!$(NC)" ;; \
 		esac; \
@@ -103,17 +104,25 @@ clear:
 run-cypress-docker:
 	@echo "$(BLUE)🐳 Executando Cypress via Docker...$(NC)"
 	docker-compose run cypress
+	$(MAKE) clear-docker
 
 run-playwright-docker:
 	@echo "$(BLUE)🐳 Executando Playwright via Docker...$(NC)"
 	docker-compose run playwright
+	$(MAKE) clear-docker
 
 run-robot-docker:
 	@echo "$(BLUE)🐳 Executando Robot via Docker...$(NC)"
 	docker-compose run robot
+	$(MAKE) clear-docker
 
 run-all-docker:
 	@echo "$(GREEN)🚀 Executando TODOS os testes via Docker...$(NC)"
 	$(MAKE) run-cypress-docker
 	$(MAKE) run-playwright-docker
 	$(MAKE) run-robot-docker
+
+clear-docker:
+	@echo "$(RED)🗑️  Removendo containers do Docker...$(NC)"
+	docker-compose down
+	docker rm -f $$(docker ps -aq)
