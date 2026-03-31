@@ -9,13 +9,14 @@ describe('Teste de Cadastro - ServeRest', () => {
   });
 
   it('Deve cadastrar um novo usuário com sucesso', () => {
+    const nome = 'Hora do QA';
     const email = `horadoqa_${Date.now()}@qa.com`;
 
     cadastroPage.visitar();
-    cadastroPage.preencherFormulario('Hora do QA', email, '1q2w3e4r');
+    cadastroPage.preencherFormulario(nome, email, '1q2w3e4r');
     cadastroPage.marcarAdmin();
     cadastroPage.submeter();
-    cadastroPage.validarSucesso();
+    cadastroPage.validarSucesso(nome);
   });
 
 });
