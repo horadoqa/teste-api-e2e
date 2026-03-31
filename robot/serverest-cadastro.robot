@@ -1,15 +1,26 @@
 *** Settings ***
-Library           SeleniumLibrary
-Library           RequestsLibrary
-Suite Setup       Health Check API
+Library    SeleniumLibrary
+Library    RequestsLibrary
+Library    Collections
+Library    JSONLibrary
+Suite Setup    Setup Suite
 
 *** Variables ***
-${API_URL}        https://serverest.dev
 ${ENDPOINT}       /usuarios
-${FRONT_URL}      https://front.serverest.dev/cadastrarusuarios
 ${BROWSER}        Chrome
 
 *** Keywords ***
+Setup Suite
+    Load Credentials
+    Health Check API
+
+Load Credentials
+    ${data}=    Load JSON From File    ${CURDIR}/../credentials.json
+    Set Suite Variable    ${NOME}        ${data['nome']}
+    Set Suite Variable    ${SENHA}       ${data['senha']}
+    Set Suite Variable    ${API_URL}     ${data['url_api']}
+    Set Suite Variable    ${FRONT_URL}   ${data['url_fe']}
+
 Health Check API
     Create Session    serverest    ${API_URL}    verify=True
     ${response}=      GET On Session    serverest    ${ENDPOINT}
@@ -32,14 +43,15 @@ Fill Cadastro Form
     Input Text     name=password  ${senha}
     Click Element  css=input[type="checkbox"]
     Click Button   css=button[type="submit"]
+    # Wait Until Page Contains Element    css=div.alert-success    timeout=30s
 
 Validate Success Message
-    Page Should Contain    Cadastro realizado com sucesso
+    Element Should Contain    css=div.alert-success    Cadastro realizado com sucesso
 
 *** Test Cases ***
 Deve Cadastrar Um Novo Usuário Com Sucesso
     ${email}=    Generate Unique Email
     Open Cadastro Page
-    Fill Cadastro Form    Hora do QA    ${email}    1q2w3e4r
+    Fill Cadastro Form    ${NOME}    ${email}    ${SENHA}
     # Validate Success Message
     Close Browser

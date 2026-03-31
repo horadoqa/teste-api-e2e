@@ -55,7 +55,7 @@ install-playwright:
 
 install-robot:
 	@echo "$(GREEN)📦 Instalando Robot Framework...$(NC)"
-	pip install robotframework robotframework-seleniumlibrary
+	pip install robotframework robotframework-seleniumlibrary robotframework-jsonlibrary
 
 # ========================
 # EXECUÇÃO

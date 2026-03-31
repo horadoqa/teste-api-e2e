@@ -1,0 +1,72 @@
+name: E2E Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '0 12 * * *'
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        tool: [cypress, playwright, robot]
+
+    steps:
+      # Checkout do repositório
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Configurar Node.js (Cypress e Playwright)
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # Configurar Python (Robot Framework)
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      # Instalar dependências
+      - name: Install Dependencies
+        run: |
+          if [ "${{ matrix.tool }}" = "cypress" ]; then
+            cd cypress
+            npm install
+          elif [ "${{ matrix.tool }}" = "playwright" ]; then
+            cd playwright
+            npm install
+            npx playwright install
+          elif [ "${{ matrix.tool }}" = "robot" ]; then
+            pip install robotframework robotframework-seleniumlibrary robotframework-requests robotframework-jsonlibrary selenium
+            sudo apt-get update
+            sudo apt-get install -y chromium-chromedriver
+          fi
+
+      # Rodar testes
+      - name: Run Tests
+        run: |
+          if [ "${{ matrix.tool }}" = "cypress" ]; then
+            cd cypress
+            npx cypress run --headless --reporter mocha-junit-reporter --reporter-options mochaFile=results/cypress-results.xml
+          elif [ "${{ matrix.tool }}" = "playwright" ]; then
+            cd playwright
+            npx playwright test --reporter=junit --output=playwright-report
+          elif [ "${{ matrix.tool }}" = "robot" ]; then
+            cd robot
+            robot --outputdir results serverest-cadastro.robot
+
+      # Fazer upload dos relatórios como artifacts
+      - name: Upload Test Reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.tool }}-reports
+          path: |
+            cypress/results
+            playwright/playwright-report
+            robot/results

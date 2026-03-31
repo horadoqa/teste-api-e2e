@@ -1,9 +1,12 @@
 import { test, expect, request } from '@playwright/test';
+import fs from 'fs';
+
+const credentials = JSON.parse(fs.readFileSync('../credentials.json', 'utf8'));
 
 test.describe('Teste de Cadastro - ServeRest', () => {
 
-  let API_URL = 'https://serverest.dev/usuarios';
-  let FRONT_URL = 'https://front.serverest.dev/cadastrarusuarios';
+  let API_URL = credentials.url_api + '/usuarios';
+  let FRONT_URL = credentials.url_fe;
   let apiContext;
 
   test.beforeAll(async ({ playwright }) => {
@@ -20,9 +23,9 @@ test.describe('Teste de Cadastro - ServeRest', () => {
 
     let email = `horadoqa_${Date.now()}@qa.com`;
 
-    await page.fill('input[name="nome"]', 'Hora do QA');
+    await page.fill('input[name="nome"]', credentials.nome);
     await page.fill('input[name="email"]', email);
-    await page.fill('input[name="password"]', '1q2w3e4r');
+    await page.fill('input[name="password"]', credentials.senha);
 
     await page.check('input[type="checkbox"]');
     await page.click('button[type="submit"]');

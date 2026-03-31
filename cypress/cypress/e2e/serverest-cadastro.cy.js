@@ -9,14 +9,17 @@ describe('Teste de Cadastro - ServeRest', () => {
   });
 
   it('Deve cadastrar um novo usuário com sucesso', () => {
-    const nome = 'Hora do QA';
-    const email = `horadoqa_${Date.now()}@qa.com`;
+    cy.readFile('../credentials.json').then((credentials) => {
+      const nome = credentials.nome;
+      const senha = credentials.senha;
+      const email = `horadoqa_${Date.now()}@qa.com`;
 
-    cadastroPage.visitar();
-    cadastroPage.preencherFormulario(nome, email, '1q2w3e4r');
-    cadastroPage.marcarAdmin();
-    cadastroPage.submeter();
-    cadastroPage.validarSucesso(nome);
+      cadastroPage.visitar();
+      cadastroPage.preencherFormulario(nome, email, senha);
+      cadastroPage.marcarAdmin();
+      cadastroPage.submeter();
+      cadastroPage.validarSucesso(nome);
+    });
   });
 
 });
