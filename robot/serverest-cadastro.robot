@@ -3,11 +3,12 @@ Library    SeleniumLibrary
 Library    RequestsLibrary
 Library    Collections
 Library    JSONLibrary
+Library    OperatingSystem
 Suite Setup    Setup Suite
 
 *** Variables ***
 ${ENDPOINT}       /usuarios
-${BROWSER}        Chrome
+${BROWSER}        headlesschrome
 
 *** Keywords ***
 Setup Suite
@@ -15,7 +16,7 @@ Setup Suite
     Health Check API
 
 Load Credentials
-    ${data}=    Load JSON From File    ${CURDIR}/../credentials.json
+    ${data}=    Load JSON From File    ${CURDIR}../credentials.json
     Set Suite Variable    ${NOME}        ${data['nome']}
     Set Suite Variable    ${SENHA}       ${data['senha']}
     Set Suite Variable    ${API_URL}     ${data['url_api']}
@@ -33,7 +34,11 @@ Generate Unique Email
     RETURN        ${email}
 
 Open Cadastro Page
-    Open Browser    ${FRONT_URL}    ${BROWSER}
+    ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
+    Call Method    ${options}    add_argument    --no-sandbox
+    Call Method    ${options}    add_argument    --disable-dev-shm-usage
+    Call Method    ${options}    add_argument    --disable-gpu
+    Open Browser    ${FRONT_URL}    ${BROWSER}    options=${options}
     Maximize Browser Window
 
 Fill Cadastro Form

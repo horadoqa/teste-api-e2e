@@ -1,4 +1,4 @@
-.PHONY: menu loop install-cypress install-playwright install-robot run-cypress run-playwright run-robot run-all
+.PHONY: menu loop install-cypress install-playwright install-robot run-cypress run-playwright run-robot run-all run-cypress-docker run-playwright-docker run-robot-docker run-all-docker
 
 # Cores ANSI
 GREEN=\033[0;32m
@@ -18,8 +18,12 @@ menu:
 	@echo "$(YELLOW)4$(NC) - Rodar testes Cypress"
 	@echo "$(YELLOW)5$(NC) - Rodar testes Playwright"
 	@echo "$(YELLOW)6$(NC) - Rodar testes Robot"
-	@echo "$(YELLOW)7$(NC) - Rodar TODOS os testes"
+	@echo "$(YELLOW)7$(NC) - Rodar TODOS os testes Localmente"
 	@echo "$(YELLOW)8$(NC) - Limpar usuários 'Hora do QA'"
+	@echo "$(YELLOW)9$(NC) - Rodar testes Cypress (Docker)"
+	@echo "$(YELLOW)10$(NC) - Rodar testes Playwright (Docker)"
+	@echo "$(YELLOW)11$(NC) - Rodar testes Robot (Docker)"
+	@echo "$(YELLOW)12$(NC) - Rodar TODOS os testes (Docker)"
 	@echo "$(RED)0$(NC) - Sair"
 	@echo "$(BLUE)=====================================$(NC)"
 
@@ -36,6 +40,10 @@ loop:
 			6) $(MAKE) run-robot ;; \
 			7) $(MAKE) run-all ;; \
 			8) $(MAKE) clear ;; \
+			9) $(MAKE) run-cypress-docker ;; \
+			10) $(MAKE) run-playwright-docker ;; \
+			11) $(MAKE) run-robot-docker ;; \
+			12) $(MAKE) run-all-docker ;; \
 			0) echo "$(RED)👋 Saindo...$(NC)"; break ;; \
 			*) echo "$(RED)❌ Opção inválida!$(NC)" ;; \
 		esac; \
@@ -69,7 +77,7 @@ run-cypress:
 
 run-playwright:
 	@echo "$(BLUE)🧪 Executando Playwright...$(NC)"
-	cd playwright && npx playwright test
+	cd playwright && mkdir -p test-results && sudo chmod -R 755 . && npx playwright test
 
 run-robot:
 	@echo "$(BLUE)🧪 Executando Robot...$(NC)"
@@ -87,3 +95,25 @@ clear:
 		echo "$(GREEN)Deletando usuário $$id$(NC)"; \
 		curl -X DELETE "https://serverest.dev/usuarios/$$id" -w "Status: %{http_code}\n"; \
 	done
+
+# ========================
+# EXECUÇÃO VIA DOCKER
+# ========================
+
+run-cypress-docker:
+	@echo "$(BLUE)🐳 Executando Cypress via Docker...$(NC)"
+	docker-compose run cypress
+
+run-playwright-docker:
+	@echo "$(BLUE)🐳 Executando Playwright via Docker...$(NC)"
+	docker-compose run playwright
+
+run-robot-docker:
+	@echo "$(BLUE)🐳 Executando Robot via Docker...$(NC)"
+	docker-compose run robot
+
+run-all-docker:
+	@echo "$(GREEN)🚀 Executando TODOS os testes via Docker...$(NC)"
+	$(MAKE) run-cypress-docker
+	$(MAKE) run-playwright-docker
+	$(MAKE) run-robot-docker

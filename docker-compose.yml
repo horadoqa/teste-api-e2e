@@ -1,0 +1,28 @@
+services:
+  cypress:
+    image: cypress/included:13.6.0
+    working_dir: /app
+    volumes:
+      - ./cypress:/app
+      - ./credentials.json:/credentials.json
+    environment:
+      - CYPRESS_baseUrl=https://front.serverest.dev
+    command: npx cypress run --spec "cypress/e2e/serverest-cadastro.cy.js"
+
+  playwright:
+    image: mcr.microsoft.com/playwright:v1.58.2-jammy
+    working_dir: /app
+    volumes:
+      - ./playwright:/app
+      - ./credentials.json:/credentials.json
+    command: npx playwright test tests/serverest-cadastro.spec.js
+
+  robot:
+    build:
+      context: .
+      dockerfile: Dockerfile.robot
+    working_dir: /app
+    volumes:
+      - ./robot:/app/robot
+      - ./credentials.json:/credentials.json
+    command: robot --outputdir robot/results robot/serverest-cadastro.robot
