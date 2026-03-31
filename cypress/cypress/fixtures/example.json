@@ -1,5 +1,5 @@
 {
-  "name": "Using fixtures to represent data",
-  "email": "hello@cypress.io",
-  "body": "Fixtures are a great way to mock data for responses to routes"
+  "name": "Ricardo Fahham",
+  "email": "rfahham@gmail.com",
+  "body": "Testes de API e E2E utilizando Cypress, Playwright e Robot Framework. O projeto inclui testes de cadastro, login, criação de produtos, carrinho de compras e finalização de pedidos. Os testes foram escritos em JavaScript para Cypress e Playwright, e em Python para Robot Framework, garantindo a cobertura completa das funcionalidades da API e da interface do usuário."
 }
