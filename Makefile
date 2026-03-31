@@ -77,7 +77,7 @@ run-cypress:
 
 run-playwright:
 	@echo "$(BLUE)🧪 Executando Playwright...$(NC)"
-	cd playwright && mkdir -p test-results && sudo chmod -R 755 . && npx playwright test
+	cd playwright && rm -rf test-results && mkdir -p test-results && npx playwright test
 
 run-robot:
 	@echo "$(BLUE)🧪 Executando Robot...$(NC)"

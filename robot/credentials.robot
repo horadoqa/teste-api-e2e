@@ -1,5 +1,5 @@
 *** Variables ***
-${CREDENTIALS_FILE}    ${CURDIR}/../credentials.json
+${CREDENTIALS_FILE}    /credentials.json
 
 *** Keywords ***
 Load Credentials

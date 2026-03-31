@@ -16,7 +16,7 @@ Setup Suite
     Health Check API
 
 Load Credentials
-    ${data}=    Load JSON From File    ${CURDIR}/../credentials.json
+    ${data}=    Load JSON From File    ../credentials.json
     Set Suite Variable    ${NOME}        ${data['nome']}
     Set Suite Variable    ${SENHA}       ${data['senha']}
     Set Suite Variable    ${API_URL}     ${data['url_api']}
