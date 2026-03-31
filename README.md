@@ -34,6 +34,7 @@ Você verá:
 5 - Rodar testes Playwright
 6 - Rodar testes Robot
 7 - Rodar TODOS os testes
+8 - Limpar usuários 'Hora do QA'
 0 - Sair
 ```
 
@@ -92,6 +93,8 @@ make install-robot
 * **Robot Framework**: `make run-robot` ou via menu
 
 Para rodar **todos os testes juntos**: `make run-all` ou escolha a opção `7` no menu.
+
+Para **limpar usuários 'Hora do QA'** da API: `make clear` ou escolha a opção `8` no menu.
 
 ---
 

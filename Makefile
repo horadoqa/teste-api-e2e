@@ -19,6 +19,7 @@ menu:
 	@echo "$(YELLOW)5$(NC) - Rodar testes Playwright"
 	@echo "$(YELLOW)6$(NC) - Rodar testes Robot"
 	@echo "$(YELLOW)7$(NC) - Rodar TODOS os testes"
+	@echo "$(YELLOW)8$(NC) - Limpar usuários 'Hora do QA'"
 	@echo "$(RED)0$(NC) - Sair"
 	@echo "$(BLUE)=====================================$(NC)"
 
@@ -34,6 +35,7 @@ loop:
 			5) $(MAKE) run-playwright ;; \
 			6) $(MAKE) run-robot ;; \
 			7) $(MAKE) run-all ;; \
+			8) $(MAKE) clear ;; \
 			0) echo "$(RED)👋 Saindo...$(NC)"; break ;; \
 			*) echo "$(RED)❌ Opção inválida!$(NC)" ;; \
 		esac; \
@@ -55,7 +57,7 @@ install-playwright:
 
 install-robot:
 	@echo "$(GREEN)📦 Instalando Robot Framework...$(NC)"
-	pip install robotframework robotframework-seleniumlibrary robotframework-jsonlibrary
+	pip install robotframework robotframework-seleniumlibrary robotframework-jsonlibrary robotframework-requests requests selenium
 
 # ========================
 # EXECUÇÃO
@@ -78,3 +80,10 @@ run-all:
 	$(MAKE) run-cypress
 	$(MAKE) run-playwright
 	$(MAKE) run-robot
+
+clear:
+	@echo "$(RED)🗑️  Limpando usuários 'Hora do QA' da API...$(NC)"
+	@curl -s 'https://serverest.dev/usuarios' | jq -r '.usuarios[] | select(.nome == "Hora do QA") | ._id' | while read id; do \
+		echo "$(GREEN)Deletando usuário $$id$(NC)"; \
+		curl -X DELETE "https://serverest.dev/usuarios/$$id" -w "Status: %{http_code}\n"; \
+	done
