@@ -9,11 +9,13 @@ Suite Setup    Setup Suite
 *** Variables ***
 ${ENDPOINT}       /usuarios
 ${BROWSER}        headlesschrome
+# ${BROWSER}        chrome
 
 *** Keywords ***
 Setup Suite
     Load Credentials
     Health Check API
+    Health Check Front
 
 Load Credentials
     ${data}=    Load JSON From File    ../credentials.json
@@ -27,6 +29,11 @@ Health Check API
     ${response}=      GET On Session    serverest    ${ENDPOINT}
     Should Be Equal As Integers    ${response.status_code}    200
     Log    API disponível com status ${response.status_code}
+
+Health Check Front
+    Create Session    frontend    ${FRONT_URL}    verify=True
+    ${response}=      GET On Session    frontend    /
+    Should Be Equal As Integers    ${response.status_code}    200
 
 Generate Unique Email
     ${timestamp}=    Get Time    epoch
@@ -48,15 +55,16 @@ Fill Cadastro Form
     Input Text     name=password  ${senha}
     Click Element  css=input[type="checkbox"]
     Click Button   css=button[type="submit"]
-    # Wait Until Page Contains Element    css=div.alert-success    timeout=30s
 
 Validate Success Message
-    Element Should Contain    css=div.alert-success    Cadastro realizado com sucesso
+    Wait Until Location Contains    /admin/home    timeout=30s
+    Wait Until Element Is Visible   css=p.lead     timeout=30s
+    Element Should Contain          css=p.lead     Este é seu sistema para administrar seu ecommerce.
 
 *** Test Cases ***
 Deve Cadastrar Um Novo Usuário Com Sucesso
     ${email}=    Generate Unique Email
     Open Cadastro Page
     Fill Cadastro Form    ${NOME}    ${email}    ${SENHA}
-    # Validate Success Message
+    Validate Success Message
     Close Browser
