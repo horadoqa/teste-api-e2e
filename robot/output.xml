@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.10.12 on linux)" generated="2026-03-31T11:56:18.487989" rpa="false" schemaversion="5">
+<suite id="s1" name="Serverest-Cadastro" source="/home/rfahham/projetos/teste-api-e2e/robot/serverest-cadastro.robot">
+<kw name="Health Check API" type="SETUP">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2026-03-31T11:56:18.766140" level="INFO">Creating Session using : alias=serverest, url=https://serverest.dev, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<arg>serverest</arg>
+<arg>${API_URL}</arg>
+<arg>verify=True</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2026-03-31T11:56:18.765883" elapsed="0.000518"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2026-03-31T11:56:19.236665" level="INFO">GET Request : url=https://serverest.dev/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2026-03-31T11:56:19.236905" level="INFO">GET Response : url=https://serverest.dev/usuarios 
+ status=200, reason=OK 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': '2e8561eeb2f0377b6a67d3361d05e835', 'date': 'Tue, 31 Mar 2026 14:56:21 GMT', 'server': 'Google Frontend', 'Content-Length': '31034'} 
+ body={
+    "quantidade": 137,
+    "usuarios": [
+        {
+            "nome": "Rodrigo User",
+            "email": "user_1774968707412@teste.com",
+            "password": "senha_segura",
+            "administrador": "false",
+            "_id": "0dfW9xpQrYMoEliF"
+        },
+        {
+            "nome": "Rodrigo Comprador",
+            "email": "comprador_1774968411199@qa.com",
+            "password": "senha_segura",
+            "administrador": "false",
+            "_id": "0gap2UDGz9lW8oXx"
+        },
+        {
+            "nome": "Fulano da Silva",
+            "email": "fulano@qa.com",
+            "password": "teste",
+            "administrador": "true",
+            "_id": "0uxuPY0cbmQhpEz1"
+        },
+        {
+            "nome": "Usuario Existente",
+            "email": "duplicado_1774968737424@qa.com",
+            "password": "senha_segura",
+            "administrador": "true",
+            "_id": "3eMRPgKxpB10No9F"
+        },
+        {
+            "nome": "Rodrigo Comprador",
+            "email": "comprador_1774968435639@qa.com",
+            "password": "senha_segura",
+            "administrador": "false",
+            "_id": "4I23X3wIGk3ajbuC"
+        },
+        {
+            "nome": "Rodrigo Admin",
+            "email": "admin_1774968439193@teste.com",
+            "password": "senha_segura",
+            "administrador": "true",
+            "_id": "4JBWyRDsMPQfQVyb"
+        },
+        {
+            "nome": "Rodrigo User",
+            "email": "user_1774968421640@teste.com",
+            "password": "senha_segura",
+            "administrador": "false",
+            "_id": "4S7soKQaiKRIlcS3"
+        },
+        {
+            "nome": "Rodrigo Admin",
+            "email": "admin_1774968400360@teste.com",
+            "password": "senha_segura",
+            "administrador": "true",
+            "_id": "4fqtmJET37v0dtDj"
+        },
+        {
+            "nome": "Rodrigo User",
+            "email": "user_1774968727433@teste.com",
+            "password": "senha_segura",
+            "administrador": "false",
+            "_id": "4oyhopcmnpst0Gic"
+        },
+        {
+            "nome": "Rodrigo Admin",
+            "email": "admin_1774968440461@teste.com",
+            "password": "senha_segura",
+            "administrador": "true",
+            "_id": "5S7Bzyt1mLQ1Sk21"
+        },
+        {
+            "nome": "Rodrigo Admin",
+            "email": "admin_1774968745884@qa.com",
+            "password": "senha_segura",
+            "administrador": "true",
+            "_id": "6aro4NCKprAVhji3"
+        },
+        {
+            "nome": "Usuario Existente",
+            "email": "duplicado_1774968747065@qa.com",
+            "password": "senha_segura",
+            "administrador": "true",
+            "_id": "6rXT1WmnfZC7Cy9R"
+        },
+        {
+            "nome": "Rodrigo Admin",
+            "email": "admin_1774968719452@qa.com",
+            "password": "senha_segura",
+            "administrador": "true",
+            "_id": "74DpILuCk53k9wiE"
+        },
+        {
+            "nome": "Rodrigo Comprador",
+            "email": "comprador_1774968721141@qa.com",
+            "password": "senha_segura",
+            "administrador": "false",
+            "_id": "7WBbiAhurzkhCQMu"
+        },
+        {
+            "nome": "Hora do QA",
+            "email": "horadoqa_1774968821238@qa.com",
+            "password": "1q2w3e4r",
+            "administrador": "true",
+            "_id": "7p5o6ockBT8MjCQJ"
+        },
+        {
+            "nome": "Usuario Existente",
+            "email": "duplicado_1774968720252@qa.com",
+            "password": "senha_segura",
+            "administrador": "true",
+            "_id": "7pHC4qSr9T8Q6Yi5"
+        },
+        {
+            "nome": "Rodrigo Admin",
+            "email": "admin_1774968726163@teste.com",
+            "password": "senha_segura",
+            "administrador": "true",
+            "_id": "8Q2adSw6KqFxLWZX"
+        },
+        {
+            "nome": "Usuário QA",
+            "email": "qa_1774967449496@teste.com",
+            "password": "123456",
+            "administrador": "true",
+            "_id": "8fDIgUcnBx98bZyM"
+        },
+        {
+            "nome": "Usuário QA",
+            "email": "qa_1774967445743@teste.com",
+            "password": "123456",
+            "administrador": "true",
+            "_id": "99VTM8uGMhqJPp1A"
+        },
+        {
+            "nome": "Rodrigo Comprador",
+            "email": "comprador_1774968721010@qa.com",
+            "password": "senha_segura",
+            "administrador": "false",
+            "_id": "9MUokDrZn2TKxk1k"
+        },
+        {
+            "nome": "Hora do QA",
+            "email": "horadoqa_1774968975975@qa.com",
+            "password": "1q2w3e4r",
+            "administrador": "true",
+            "_id": "9aXd97yJAYjQKlgV"
+        },
+        {
+            "nome": "Hora do QA",
+            "email": "horadoqa_1774968764895@qa.com",
+            "password": "1q2w3e4r",
+            "administrador": "true",
+            "_id": "AdnvqdzBgrcBKtbh"
+        },
+        {
+            "nome": "Hora do QA",
+            "email": "horadoqa_1774968803649@qa.com",
+            "password": "1q2w3e4r",
+            "administrador": "true",
+            "_id": "BtL6P66lGyx8E50u"
+        },
+        {
+            "nome": "Rodrigo Admin",
+            "email": "admin_1774968707222@teste.com",
+            "password": "senha_segura",
+            "administrador": "true",
+            "_id": "C2p5U0AiBUSKv52V"
+        },
+        {
+            "nome": "Rodrigo User",
+            "email": "user_1774968726163@teste.com",
+            "password": "senha_segura",
+            "administrador": "false",
+            "_id": "CKsScCbKVE0c9gPU"
+        },
+        {
+            "nome": "Rodrigo Admin",
+            "email": "admin_1774968441003@teste.com",
+            "password": "senha_segura",
+            "administrador": "true",
+            "_id": "CZQpGVg1Xlx3Qcci"
+        },
+        {
+            "nome": "Rodrigo User",
+            "email": "user_1774968749267@teste.com",
+            "password": "senha_segura",
+            "administrador": "false",
+            "_id": "DDLEpNc56jzzDcIB"
+        },
+        {
+            "nome": "Hora do QA",
+            "email": "horadoqa_1774968973033@qa.com",
+            "password": "1q2w3e4r",
+            "administrador": "true",
+            "_id": "DFEKSOLPA2zuwRUw"
+        },
+        {
+            "nome": "Rodrigo Comprador",
+            "email": "comprador_1774968700825@qa.com",
+            "password": "senha_segura",
+            "administrador": "false",
+            "_id": "DNHPD4QlEQpFoS26"
+        },
+        {
+            "nome": "Rodrigo Admin",
+            "email": "admin_1774968727433@teste.com",
+            "password": "senha_segura",
+            "administrador": "true",
+            "_id": "EVkahNwNnhWQEWoE"
+        },
+        {
+            "nome": "Hora do QA",
+            "email": "horadoqa_1774968668917@qa.com",
+            "password": "1q2w3e4r",
+            "administrador": "true",
+            "_id": "FGxpruel8nhZdQHc"
+        },
+        {
+            "nome": "Rodrigo Admin",
+            "email": "admin_1774968722424@teste.com",
+            "password": "senha_segura",
+            "administrador": "true",
+            "_id": "FKxIgBgDXRK9Omm7"
+        },
+        {
+            "nome": "Pedro",
+            "email": "user_1774968480117@qa.com",
+            "password": "Passarinho123",
+            "administrador": "true",
+            "_id": "FToJtcHspcfyNkQ4"
+        },
+        {
+            "nome": "Hora do QA",
+            "email": "horadoqa_1774968858570@qa.com",
+            "password": "1q2w3e4r",
+            "administrador": "true",
+            "_id": "GXxd59Jheos2gefC"
+        },
+        {
+            "nome": "Rodrigo Admin",
+            "email": "admin_1774968755510@qa.com",
+            "password": "senha_segura",
+            "administrador": "true",
+            "_id": "HJVZghxCFbECLtxk"
+        },
+        {
+            "nome": "Rodrigo User",
+            "email": "user_1774968439193@teste.com",
+            "password": "senha_segura",
+            "administrador": "false",
+            "_id": "HflBSyLnvr6rLEMT"
+        },
+        {
+            "nome": "Rodrigo User",
+            "email": "user_1774968400062@teste.com",
+            "password": "senha_segura",
+            "administrador": "false",
+            "_id": "HudNJd50Op1AlnkE"
+        },
+        {
+            "nome": "Rodrigo User",
+            "email": "user_1774968751218@teste.com",
+            "password": "senha_segura",
+            "administrador": "false",
+            "_id": "IEep3TqxW0HIlAT8"
+        },
+        {
+            "nome": "Rodrigo Admin",
+            "email": "admin_1774968401869@teste.com",
+            "password": "senha_segura",
+            "administrador": "true",
+            "_id": "IOOg705t3n4cSgkS"
+        },
+        {
+            "nome": "Rodrigo Admin",
+            "email": "admin_1774968709668@qa.com",
+            "password": "senha_segura",
+            "administrador": "true",
+            "_id": "IbpE2KmNoaJNq4b5"
+        },
+        {
+            "nome": "Rodrigo Comprador",
+            "email": "comprador_1774968700899@qa.com",
+            "password": "senha_segura",
+            "administrador": "false",
+            "_id": "IlhDXNFYQKVbEssT"
+        },
+        {
+            "nome": "Rodrigo User",
+            "email": "user_1774968440461@teste.com",
+            "password": "senha_segura",
+            "administrador": "false",
+            "_id": "KheHp3Qfn1vz1QZz"
+        },
+        {
+            "nome": "Rodrigo User",
+            "email": "user_1774968401911@teste.com",
+            "password": "senha_segura",
+            "administrador": "false",
+            "_id": "KyaD7V50gzYigiiF"
+        },
+        {
+            "nome": "Rodrigo User",
+            "email": "user_1774968706849@teste.com",
+            "password": "senha_segura",
+            "administrador": "false",
+            "_id": "LhN9LSvYdnrE6XG3"
+        },
+        {
+            "nome": "Rodrigo User",
+... (set the log level to DEBUG or TRACE to see the full content) 
+ </msg>
+<msg time="2026-03-31T11:56:19.237310" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>${ENDPOINT}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-31T11:56:18.766547" elapsed="0.470836"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-03-31T11:56:19.238380" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-03-31T11:56:19.237670" elapsed="0.000822"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2026-03-31T11:56:19.239121" level="INFO">API disponível com status 200</msg>
+<arg>API disponível com status ${response.status_code}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2026-03-31T11:56:19.238678" elapsed="0.000508"/>
+</kw>
+<status status="PASS" start="2026-03-31T11:56:18.765196" elapsed="0.474103"/>
+</kw>
+<test id="s1-t1" name="Deve Cadastrar Um Novo Usuário Com Sucesso" line="40">
+<kw name="Generate Unique Email">
+<kw name="Get Time" owner="BuiltIn">
+<msg time="2026-03-31T11:56:19.240599" level="INFO">${timestamp} = 1774968979</msg>
+<var>${timestamp}</var>
+<arg>epoch</arg>
+<doc>Returns the given time in the requested format.</doc>
+<status status="PASS" start="2026-03-31T11:56:19.240344" elapsed="0.000291"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-03-31T11:56:19.240992" level="INFO">${email} = horadoqa_1774968979@qa.com</msg>
+<var>${email}</var>
+<arg>horadoqa_${timestamp}@qa.com</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-03-31T11:56:19.240782" elapsed="0.000240"/>
+</kw>
+<return>
+<value>${email}</value>
+<status status="PASS" start="2026-03-31T11:56:19.241102" elapsed="0.000059"/>
+</return>
+<msg time="2026-03-31T11:56:19.241310" level="INFO">${email} = horadoqa_1774968979@qa.com</msg>
+<var>${email}</var>
+<status status="PASS" start="2026-03-31T11:56:19.239963" elapsed="0.001374"/>
+</kw>
+<kw name="Open Cadastro Page">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-03-31T11:56:19.242646" level="INFO">Opening browser 'Chrome' to base url 'https://front.serverest.dev/cadastrarusuarios'.</msg>
+<arg>${FRONT_URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-03-31T11:56:19.242316" elapsed="5.003728"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-03-31T11:56:24.246267" elapsed="0.032646"/>
+</kw>
+<status status="PASS" start="2026-03-31T11:56:19.241752" elapsed="5.037300"/>
+</kw>
+<kw name="Fill Cadastro Form">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-03-31T11:56:24.280158" level="INFO">Typing text 'Hora do QA' into text field 'name=nome'.</msg>
+<arg>name=nome</arg>
+<arg>${nome}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-03-31T11:56:24.279720" elapsed="0.158625"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-03-31T11:56:24.438985" level="INFO">Typing text 'horadoqa_1774968979@qa.com' into text field 'name=email'.</msg>
+<arg>name=email</arg>
+<arg>${email}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-03-31T11:56:24.438608" elapsed="0.260908"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-03-31T11:56:24.700178" level="INFO">Typing text '1q2w3e4r' into text field 'name=password'.</msg>
+<arg>name=password</arg>
+<arg>${senha}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-03-31T11:56:24.699810" elapsed="0.115881"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-03-31T11:56:24.816227" level="INFO">Clicking element 'css=input[type="checkbox"]'.</msg>
+<arg>css=input[type="checkbox"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-03-31T11:56:24.815957" elapsed="0.086486"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-03-31T11:56:24.903044" level="INFO">Clicking button 'css=button[type="submit"]'.</msg>
+<arg>css=button[type="submit"]</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-03-31T11:56:24.902720" elapsed="0.100360"/>
+</kw>
+<arg>Hora do QA</arg>
+<arg>${email}</arg>
+<arg>1q2w3e4r</arg>
+<status status="PASS" start="2026-03-31T11:56:24.279352" elapsed="0.723886"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-03-31T11:56:25.003542" elapsed="0.058206"/>
+</kw>
+<status status="PASS" start="2026-03-31T11:56:19.239396" elapsed="5.822664"/>
+</test>
+<status status="PASS" start="2026-03-31T11:56:18.488874" elapsed="6.573873"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Serverest-Cadastro">Serverest-Cadastro</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
