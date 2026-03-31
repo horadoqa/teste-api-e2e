@@ -4,8 +4,80 @@ Este projeto realiza **testes de API e E2E** utilizando **Playwright**, **Cypres
 
 O fluxo é:
 
-1. Teste de API (via Robot Framework / RequestsLibrary)
-2. Teste E2E no front-end (via Playwright, Cypress e Robot Framework SeleniumLibrary)
+> Testar a API e caso esteja respondendo, testar E2E no front-end (via Playwright, Cypress e Robot Framework)
+
+---
+
+### 💻 Pré-requisitos
+
+* LINUX (WSL)
+
+Neste projeto estou utilizando o Ubuntu no Windows com WSL.
+
+Versão do Linux:
+
+```bash
+cat /etc/os-release
+PRETTY_NAME="Ubuntu 22.04.5 LTS"
+NAME="Ubuntu"
+VERSION_ID="22.04"
+VERSION="22.04.5 LTS (Jammy Jellyfish)"
+VERSION_CODENAME=jammy
+ID=ubuntu
+ID_LIKE=debian
+```
+
+* [Node.js](https://nodejs.org/) (para Cypress e Playwright)
+
+Versão do Node:
+
+```bash
+node --version
+v20.20.2
+```
+
+Versão do NPM:
+
+```bash
+npm --version
+10.8.2
+```
+
+* Python 3.10+ (para Robot Framework)
+
+Versão do Python:
+
+```bash
+python3 --version
+Python 3.10.12
+```
+
+* Chrome ou outro navegador compatível (para testes E2E)
+
+Versão do chromedriver:
+
+```bash
+chromedriver --version
+ChromeDriver 146.0.7680.80 (f08938029c887ea624da7a1717059788ed95034d-refs/branch-heads/7680_65@{#34})
+```
+
+Versão do google-chrome:
+
+```bash
+google-chrome --version
+Google Chrome 146.0.7680.80 
+```
+
+> OBS.: o `chromedriver` e `google-chrome` precisam ter a mesma versão. Caso contrário não vai funcionar.
+
+* `pip` atualizado
+
+Versão do PIP:
+
+```bash
+pip --version
+pip 26.0.1 from /home/rfahham/.local/lib/python3.10/site-packages/pip (python 3.10)
+```
 
 ---
 
@@ -38,21 +110,6 @@ Você verá:
 0 - Sair
 ```
 
-Basta escolher a opção desejada e seguir as instruções.
-
----
-
-### 💻 Pré-requisitos
-
-* [Node.js](https://nodejs.org/) (para Cypress e Playwright)
-* Python 3.10+ (para Robot Framework)
-* Chrome ou outro navegador compatível (para testes E2E)
-* `pip` atualizado
-
----
-
-### 📦 Instalando dependências
-
 #### Cypress
 
 ```bash
@@ -71,18 +128,7 @@ make install-playwright
 
 ```bash
 make install-robot
-# ou manual: pip install -r robot/requirements.txt
 ```
-
-> Obs: `requirements.txt` deve conter:
->
-> ```
-> robotframework
-> robotframework-seleniumlibrary
-> robotframework-requests
-> robotframework-jsonlibrary
-> selenium
-> ```
 
 ---
 
