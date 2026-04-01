@@ -41,8 +41,18 @@ Generate Unique Email
     RETURN        ${email}
 
 Open Cadastro Page
-    Open Browser    ${FRONT_URL}    ${BROWSER}    options=add_argument(--no-sandbox);add_argument(--disable-dev-shm-usage);add_argument(--disable-gpu)
-    Maximize Browser Window
+    ${options}=    Create Dictionary
+    ...    args=${EMPTY}
+
+    ${args}=    Create List
+    ...    --no-sandbox
+    ...    --disable-dev-shm-usage
+    ...    --disable-gpu
+    ...    --headless=new
+
+    Set To Dictionary    ${options}    args=${args}
+
+    Open Browser    ${FRONT_URL}    chrome    options=${options}
 
 Fill Cadastro Form
     [Arguments]    ${nome}    ${email}    ${senha}
