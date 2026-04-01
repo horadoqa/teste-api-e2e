@@ -47,7 +47,6 @@ jobs:
             pip install robotframework robotframework-seleniumlibrary robotframework-requests robotframework-jsonlibrary requests selenium
             sudo apt-get update
             sudo apt-get install -y chromium-chromedriver chromium-browser
-            sudo ln -sf /usr/bin/chromium-browser /usr/bin/google-chrome
           fi
 
       # Rodar testes
@@ -61,7 +60,7 @@ jobs:
             npx playwright test --reporter=junit --output=playwright-report
           elif [ "${{ matrix.tool }}" = "robot" ]; then
             cd robot
-            robot --outputdir results serverest-cadastro.robot
+            robot --outputdir results serverest-cadastro-ci.robot
           fi
 
       # Fazer upload dos relatórios como artifacts
