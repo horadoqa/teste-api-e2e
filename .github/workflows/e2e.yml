@@ -47,7 +47,7 @@ jobs:
             pip install robotframework robotframework-seleniumlibrary robotframework-requests robotframework-jsonlibrary requests selenium
             sudo apt-get update
             sudo apt-get install -y chromium-chromedriver chromium-browser
-            sudo ln -s /usr/bin/chromium-browser /usr/bin/google-chrome
+            sudo ln -sf /usr/bin/chromium-browser /usr/bin/google-chrome
           fi
 
       # Rodar testes
