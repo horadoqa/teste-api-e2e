@@ -1,6 +1,7 @@
 {
   "devDependencies": {
-    "cypress": "^15.13.0"
+    "cypress": "^15.13.0",
+    "mocha-junit-reporter": "^2.2.1"
   },
   "name": "cypress",
   "version": "1.0.0",
