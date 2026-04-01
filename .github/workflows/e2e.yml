@@ -42,6 +42,7 @@ jobs:
             cd playwright
             npm install
             npx playwright install
+            npx playwright install-deps
           elif [ "${{ matrix.tool }}" = "robot" ]; then
             pip install robotframework robotframework-seleniumlibrary robotframework-requests robotframework-jsonlibrary requests selenium
             sudo apt-get update
