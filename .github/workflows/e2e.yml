@@ -60,6 +60,7 @@ jobs:
           elif [ "${{ matrix.tool }}" = "robot" ]; then
             cd robot
             robot --outputdir results serverest-cadastro.robot
+          fi
 
       # Fazer upload dos relatórios como artifacts
       - name: Upload Test Reports
