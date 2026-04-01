@@ -41,18 +41,14 @@ Generate Unique Email
     RETURN        ${email}
 
 Open Cadastro Page
-    ${options}=    Create Dictionary
-    ...    args=${EMPTY}
+    ${options}=    Evaluate    sys.modules['selenium.webdriver.chrome.options'].Options()    sys
+    Call Method    ${options}    add_argument    --no-sandbox
+    Call Method    ${options}    add_argument    --disable-dev-shm-usage
+    Call Method    ${options}    add_argument    --disable-gpu
+    Call Method    ${options}    add_argument    --headless=new
 
-    ${args}=    Create List
-    ...    --no-sandbox
-    ...    --disable-dev-shm-usage
-    ...    --disable-gpu
-    ...    --headless=new
-
-    Set To Dictionary    ${options}    args=${args}
-
-    Open Browser    ${FRONT_URL}    chrome    options=${options}
+    Open Browser    ${FRONT_URL}    headlesschrome
+    Maximize Browser Window
 
 Fill Cadastro Form
     [Arguments]    ${nome}    ${email}    ${senha}
