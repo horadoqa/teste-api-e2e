@@ -41,11 +41,7 @@ Generate Unique Email
     RETURN        ${email}
 
 Open Cadastro Page
-    ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
-    Call Method    ${options}    add_argument    --no-sandbox
-    Call Method    ${options}    add_argument    --disable-dev-shm-usage
-    Call Method    ${options}    add_argument    --disable-gpu
-    Evaluate    setattr(options, 'binary_location', '/usr/bin/chromium-browser')    options=${options}
+    ${options}=    Evaluate    (lambda o: (setattr(o, 'binary_location', '/usr/bin/chromium-browser'), o.add_argument('--no-sandbox'), o.add_argument('--disable-dev-shm-usage'), o.add_argument('--disable-gpu'), o)[-1])(__import__('selenium.webdriver').ChromeOptions())
     Open Browser    ${FRONT_URL}    ${BROWSER}    options=${options}
     Maximize Browser Window
 
