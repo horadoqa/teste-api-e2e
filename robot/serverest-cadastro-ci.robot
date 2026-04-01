@@ -41,8 +41,7 @@ Generate Unique Email
     RETURN        ${email}
 
 Open Cadastro Page
-    ${options}=    Evaluate    (lambda o: (setattr(o, 'binary_location', '/usr/bin/chromium-browser'), o.add_argument('--no-sandbox'), o.add_argument('--disable-dev-shm-usage'), o.add_argument('--disable-gpu'), o)[-1])(__import__('selenium.webdriver').ChromeOptions())
-    Open Browser    ${FRONT_URL}    ${BROWSER}    options=${options}
+    Open Browser    ${FRONT_URL}    ${BROWSER}    options=add_argument(--no-sandbox);add_argument(--disable-dev-shm-usage);add_argument(--disable-gpu)
     Maximize Browser Window
 
 Fill Cadastro Form
