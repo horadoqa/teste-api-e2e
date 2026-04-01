@@ -5,6 +5,7 @@ Library    Collections
 Library    JSONLibrary
 Library    OperatingSystem
 Suite Setup    Setup Suite
+Test Teardown    Close Browser
 
 *** Variables ***
 ${ENDPOINT}       /usuarios
@@ -41,14 +42,9 @@ Generate Unique Email
     RETURN        ${email}
 
 Open Cadastro Page
-    ${options}=    Evaluate    sys.modules['selenium.webdriver.chrome.options'].Options()    sys
-    Call Method    ${options}    add_argument    --no-sandbox
-    Call Method    ${options}    add_argument    --disable-dev-shm-usage
-    Call Method    ${options}    add_argument    --disable-gpu
-    Call Method    ${options}    add_argument    --headless=new
-
     Open Browser    ${FRONT_URL}    headlesschrome
     Maximize Browser Window
+    Wait Until Element Is Visible    name=nome    timeout=10s
 
 Fill Cadastro Form
     [Arguments]    ${nome}    ${email}    ${senha}
